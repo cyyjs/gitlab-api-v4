@@ -1,4 +1,4 @@
-import base from './base';
+import base from './base'
 
 export interface createData {
   id: string |number
@@ -19,7 +19,7 @@ export interface fileResponse {
   message: string
 }
 
-class RepositoryFile extends base{
+class RepositoryFile extends base {
   // 获取文件
   async get ({ id, file_path, ref }: {
     id: string|number,
@@ -36,7 +36,7 @@ class RepositoryFile extends base{
     if (file_path.endsWith('.json')) {
       try {
         content = JSON.parse(content)
-      } catch(e) {
+      } catch (e) {
         throw Error(`${file_path}: 解析失败`)
       }
     }
@@ -44,7 +44,7 @@ class RepositoryFile extends base{
   }
 
   // 创建文件
-  async create(option: createData) {
+  async create (option: createData) {
     const res:fileResponse = await this.fetch.post(`/projects/${option.id}/repository/files/${option.file_path}`, option)
     if (res.message) {
       throw Error(res.message)
@@ -53,7 +53,7 @@ class RepositoryFile extends base{
   }
 
   // 修改文件
-  async update(option: createData) {
+  async update (option: createData) {
     const res:fileResponse = await this.fetch.put(`/projects/${option.id}/repository/files/${option.file_path}`, option)
     if (res.message) {
       throw Error(res.message)
@@ -62,7 +62,7 @@ class RepositoryFile extends base{
   }
 
   // 删除文件
-  async remove(option: createData) {
+  async remove (option: createData) {
     const res:fileResponse = await this.fetch.delete(`/projects/${option.id}/repository/files/${option.file_path}`, option)
     if (res.message) {
       throw Error(res.message)

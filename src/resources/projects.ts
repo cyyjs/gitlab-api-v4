@@ -1,6 +1,6 @@
-import base from './base';
+import base from './base'
 
-class projects extends base{
+class projects extends base {
   list () {
     return this.fetch.get('/projects', {})
   }

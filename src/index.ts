@@ -6,7 +6,7 @@ export interface GitlabOption {
   api: string,
   privateToken: string
 }
- 
+
 class Gitlab {
   projects: Projects
   repositoryFile: RepositoryFile
