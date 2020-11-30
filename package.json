@@ -1,0 +1,54 @@
+{
+  "name": "gitlab-api-v4",
+  "version": "0.1.0",
+  "description": "gitlab api v4",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "cyyjs",
+    "email": "cyy0418@qq.com"
+  },
+  "homepage": "https://github.com/cyyjs/gitlab-api-v4",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyyjs/gitlab-api-v4.git"
+  },
+  "scripts": {
+    "build": "yarn lint && rollup -c",
+    "lint": "eslint src --ext .ts --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.5.3",
+    "rollup": "^2.32.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.28.0",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "keywords": [
+    "gitlab",
+    "gitlab api",
+    "api v4",
+    "git"
+  ]
+}
