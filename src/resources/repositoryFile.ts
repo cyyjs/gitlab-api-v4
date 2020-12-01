@@ -29,45 +29,35 @@ class RepositoryFile extends base {
     const res:fileResponse = await this.fetch.get(`/projects/${id}/repository/files/${file_path}`, {
       ref
     })
-    if (!res.content) {
-      throw Error(res.message)
-    }
-    let content = Buffer.from(res.content, 'base64').toString()
-    if (file_path.endsWith('.json')) {
-      try {
-        content = JSON.parse(content)
-      } catch (e) {
-        throw Error(`${file_path}: 解析失败`)
+    console.log(res)
+    if (res.content) {
+      let content = Buffer.from(res.content, 'base64').toString()
+      if (file_path.endsWith('.json')) {
+        try {
+          content = JSON.parse(content)
+        } catch (e) {
+          return Promise.reject(Error(`${file_path}: 解析失败`))
+        }
       }
+      return content
+    } else if (res.message) {
+      return Promise.reject(res.message)
     }
-    return content
   }
 
   // 创建文件
   async create (option: createData) {
-    const res:fileResponse = await this.fetch.post(`/projects/${option.id}/repository/files/${option.file_path}`, option)
-    if (res.message) {
-      throw Error(res.message)
-    }
-    return res
+    return this.fetch.post(`/projects/${option.id}/repository/files/${option.file_path}`, option)
   }
 
   // 修改文件
   async update (option: createData) {
-    const res:fileResponse = await this.fetch.put(`/projects/${option.id}/repository/files/${option.file_path}`, option)
-    if (res.message) {
-      throw Error(res.message)
-    }
-    return res
+    return this.fetch.put(`/projects/${option.id}/repository/files/${option.file_path}`, option)
   }
 
   // 删除文件
   async remove (option: createData) {
-    const res:fileResponse = await this.fetch.delete(`/projects/${option.id}/repository/files/${option.file_path}`, option)
-    if (res.message) {
-      throw Error(res.message)
-    }
-    return res
+    return this.fetch.delete(`/projects/${option.id}/repository/files/${option.file_path}`, option)
   }
 }
 

@@ -5,7 +5,7 @@ const gitlab = new Gitlab({
   privateToken: ''
 })
 
-const projectID = 4595
+const projectID = 0
 describe('Gitlab is ok', () => {
   test.skip('Gitlab get project list', () => {
     return gitlab.projects.list().then((res:any) => {
@@ -13,7 +13,7 @@ describe('Gitlab is ok', () => {
     })
   })
 
-  test.skip('Gitlab get repositoryFile', () => {
+  test('Gitlab get repositoryFile', () => {
     return gitlab.repositoryFile.get({
       id: projectID,
       file_path: 'package.json',
@@ -23,7 +23,7 @@ describe('Gitlab is ok', () => {
     })
   })
 
-  test('Gitlab create repositoryFile', () => {
+  test.skip('Gitlab create repositoryFile', () => {
     return gitlab.repositoryFile.create({
       id: projectID,
       file_path: '1.json',
@@ -47,7 +47,7 @@ describe('Gitlab is ok', () => {
     })
   })
 
-  test('Gitlab delete repositoryFile', () => {
+  test.skip('Gitlab delete repositoryFile', () => {
     return gitlab.repositoryFile.remove({
       id: projectID,
       file_path: '1.json',

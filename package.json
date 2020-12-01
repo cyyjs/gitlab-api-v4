@@ -1,6 +1,6 @@
 {
   "name": "gitlab-api-v4",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "gitlab api v4",
   "main": "./lib/index.js",
   "license": "MIT",
@@ -22,6 +22,9 @@
   "dependencies": {
     "node-fetch": "^2.6.1"
   },
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
