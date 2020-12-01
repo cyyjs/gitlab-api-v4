@@ -11,6 +11,11 @@ export interface createData {
   author_email?: string
   author_name?: string
 }
+export interface getData {
+  id: string |number
+  file_path: string
+  ref: string
+}
 
 export interface fileResponse {
   file_path: string
@@ -19,45 +24,28 @@ export interface fileResponse {
   message: string
 }
 
+const getPath = (option: createData | getData) => `/projects/${option.id}/repository/files/${option.file_path}`
 class RepositoryFile extends base {
   // 获取文件
-  async get ({ id, file_path, ref }: {
-    id: string|number,
-    file_path: string,
-    ref: string
-  }) {
-    const res:fileResponse = await this.fetch.get(`/projects/${id}/repository/files/${file_path}`, {
-      ref
+  async get (option: getData) {
+    return this.fetch.get(getPath(option), {
+      ref: option.ref
     })
-    console.log(res)
-    if (res.content) {
-      let content = Buffer.from(res.content, 'base64').toString()
-      if (file_path.endsWith('.json')) {
-        try {
-          content = JSON.parse(content)
-        } catch (e) {
-          return Promise.reject(Error(`${file_path}: 解析失败`))
-        }
-      }
-      return content
-    } else if (res.message) {
-      return Promise.reject(res.message)
-    }
   }
 
   // 创建文件
   async create (option: createData) {
-    return this.fetch.post(`/projects/${option.id}/repository/files/${option.file_path}`, option)
+    return this.fetch.post(getPath(option), option)
   }
 
   // 修改文件
   async update (option: createData) {
-    return this.fetch.put(`/projects/${option.id}/repository/files/${option.file_path}`, option)
+    return this.fetch.put(getPath(option), option)
   }
 
   // 删除文件
   async remove (option: createData) {
-    return this.fetch.delete(`/projects/${option.id}/repository/files/${option.file_path}`, option)
+    return this.fetch.delete(getPath(option), option)
   }
 }
 
