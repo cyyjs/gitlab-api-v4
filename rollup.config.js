@@ -3,6 +3,7 @@ import typescript from 'rollup-plugin-typescript2'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { terser } from "rollup-plugin-terser"
+import strip from '@rollup/plugin-strip'
 import path from 'path'
 
 const plugins = [
@@ -15,6 +16,12 @@ const plugins = [
   typescript({
     tsconfig: 'tsconfig.json',
     cacheRoot: path.resolve(__dirname, 'node_modules/.rts2_cache')
+  }),
+  strip({
+    include: [
+      '**/*.js',
+      '**/*.ts',
+    ]
   }),
   resolve({ preferBuiltins: true }),
   commonjs(),
